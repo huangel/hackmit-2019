@@ -5,4 +5,5 @@ src/.DS_STORE
 web/package-lock.json
 web/client/dist/bundle.js
 web/node_modules/
-
+/*.log
+*/package-lock.json

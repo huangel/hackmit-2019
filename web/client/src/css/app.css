@@ -8,11 +8,15 @@
 .title {
     align-self: center;
     font-size: 40px;
-    margin: 2% 0%
+    margin: 2% 0%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
 }
 
 .subtitle {
-    margin: 2% 0%
+    margin: 2% 0%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
 }
 
 .container {
