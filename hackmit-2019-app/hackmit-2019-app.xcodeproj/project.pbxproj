@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		2C2E0972232D4A6C005CDC29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C2E0970232D4A6C005CDC29 /* LaunchScreen.storyboard */; };
 		2C2E097D232D4A6C005CDC29 /* hackmit_2019_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E097C232D4A6C005CDC29 /* hackmit_2019_appTests.swift */; };
 		2C2E0988232D4A6C005CDC29 /* hackmit_2019_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E0987232D4A6C005CDC29 /* hackmit_2019_appUITests.swift */; };
+		EBE9C68E232D677600181234 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE9C68D232D677600181234 /* Contact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		2C2E0983232D4A6C005CDC29 /* hackmit-2019-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hackmit-2019-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2E0987232D4A6C005CDC29 /* hackmit_2019_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackmit_2019_appUITests.swift; sourceTree = "<group>"; };
 		2C2E0989232D4A6C005CDC29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBE9C68D232D677600181234 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				2C2E096E232D4A6C005CDC29 /* Assets.xcassets */,
 				2C2E0970232D4A6C005CDC29 /* LaunchScreen.storyboard */,
 				2C2E0973232D4A6C005CDC29 /* Info.plist */,
+				EBE9C68D232D677600181234 /* Contact.swift */,
 			);
 			path = "hackmit-2019-app";
 			sourceTree = "<group>";
@@ -193,19 +196,22 @@
 				TargetAttributes = {
 					2C2E0963232D4A6B005CDC29 = {
 						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
 					};
 					2C2E0977232D4A6C005CDC29 = {
 						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 2C2E0963232D4A6B005CDC29;
 					};
 					2C2E0982232D4A6C005CDC29 = {
 						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 2C2E0963232D4A6B005CDC29;
 					};
 				};
 			};
 			buildConfigurationList = 2C2E095F232D4A6B005CDC29 /* Build configuration list for PBXProject "hackmit-2019-app" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -256,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE9C68E232D677600181234 /* Contact.swift in Sources */,
 				2C2E096A232D4A6B005CDC29 /* ViewController.swift in Sources */,
 				2C2E0968232D4A6B005CDC29 /* AppDelegate.swift in Sources */,
 			);
@@ -434,10 +441,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "hackmit-2019-app/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.mit.hackmit-2019-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -451,10 +455,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "hackmit-2019-app/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.mit.hackmit-2019-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -469,11 +470,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "hackmit-2019-appTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.mit.hackmit-2019-appTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -489,11 +486,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "hackmit-2019-appTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.mit.hackmit-2019-appTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -508,11 +501,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "hackmit-2019-appUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.mit.hackmit-2019-appUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -527,11 +516,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "hackmit-2019-appUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.mit.hackmit-2019-appUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
