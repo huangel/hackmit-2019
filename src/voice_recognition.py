@@ -30,20 +30,21 @@ class VoiceRecognition():
         all_vectors = self.c.execute('''SELECT voice FROM voices_table''').fetchall()
         self.all_vectors = np.array([v[0] for v in all_vectors])
 
+    def _insert_vector(vector):
+        timestamp = datetime.datetime.now()
+        self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', vector, timestamp))
+        self.conn.commit()
+
     def predict(self, voice_vector):
         if len(self.all_vectors) == 0:
-            timestamp = datetime.datetime.now()
-            self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', voice_vector, timestamp))
-            self.conn.commit()
+            self._insert_vector(voice_vector)
             return 'Enter name: '
         tree = KDTree(self.all_vectors)
         if len(self.all_vectors) == 1:
             dist, ind = tree.query([voice_vector], k=1)
             ind_1 = ind[0][0]
             dist_1 = dist[0][0]
-            timestamp = datetime.datetime.now()
-            self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', voice_vector, timestamp))
-            self.conn.commit()
+            self._insert_vector(voice_vector)
             if dist_1 <= 10:
                 return self.all_names[ind_1]
             else:
@@ -54,9 +55,7 @@ class VoiceRecognition():
             ind_2 = ind[0][1]
             dist_1 = dist[0][0]
             dist_2 = dist[0][1]
-        timestamp = datetime.datetime.now()
-        self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', voice_vector, timestamp))
-        self.conn.commit()
+        self._insert_vector(voice_vector)
         if abs(dist_1 - dist_2) <= 0.5:
             return 'Suggested: ' + self.all_names[ind_1] + ' ' + self.all_names[ind_2]
         if dist_1 <= 10:
