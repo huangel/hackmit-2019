@@ -35,20 +35,32 @@ class VoiceRecognition():
             timestamp = datetime.datetime.now()
             self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', voice_vector, timestamp))
             self.conn.commit()
-            return 'Enter name'
+            return 'Enter name: '
         tree = KDTree(self.all_vectors)
-        dist, ind = tree.query(voice_vector, k=2)
-        ind_1 = ind[0][0]
-        ind_2 = ind[0][1]
-        dist_1 = dist[0][0]
-        dist_2 = dist[0][1]
+        if len(self.all_vectors) == 1:
+            dist, ind = tree.query([voice_vector], k=1)
+            ind_1 = ind[0][0]
+            dist_1 = dist[0][0]
+            timestamp = datetime.datetime.now()
+            self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', voice_vector, timestamp))
+            self.conn.commit()
+            if dist_1 <= 10:
+                return self.all_names[ind_1]
+            else:
+                return "Suggested: " + self.all_names[ind_1]
+        else:
+            dist, ind = tree.query([voice_vector], k=2)
+            ind_1 = ind[0][0]
+            ind_2 = ind[0][1]
+            dist_1 = dist[0][0]
+            dist_2 = dist[0][1]
         timestamp = datetime.datetime.now()
         self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', voice_vector, timestamp))
         self.conn.commit()
         if abs(dist_1 - dist_2) <= 0.5:
             return 'Suggested: ' + self.all_names[ind_1] + ' ' + self.all_names[ind_2]
-        if dist <= 10:
-            return self.all_names[most_similar_index]
+        if dist_1 <= 10:
+            return self.all_names[ind_1]
         return 'Suggested: ' + self.all_names[ind_1]
 
     def reassign_name(self, name):
