@@ -92,6 +92,17 @@ const server = http.Server(app);
 const io = socketio(server);
 app.set('socketio', io);
 
+app.get('/start', (req, res) => {
+  var spawn = require('child_process').spawn;
+  var process = spawn('python', ['../client/src/get_mfcc.py']);
+  for (var i = 0; i < process.length; i++) {
+      io.on('connection', function (socket) {
+          socket.emit('my response', {hello: process[i]});
+      })
+  }
+})
+
 server.listen(port, function() {
   console.log('Server running on port: ' + port);
 });
+
