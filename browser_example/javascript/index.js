@@ -9,28 +9,27 @@ function doStream() {
     var site_base_url = 'http://localhost:5000/';
     finalsReceived = 0;
     currentCell = null;
+    resetDisplay();
+    statusElement.innerHTML = "Opened";
     var socket = io.connect(site_base_url);
       socket.on( 'connect', function() {
         socket.emit( 'my event', {
           data: 'User Connected'
         } )
-        var form = $( 'form' ).on( 'submit', function( e ) {
-          e.preventDefault()
-          let user_name = $( 'input.username' ).val()
-          let user_input = $( 'input.message' ).val()
-          socket.emit( 'my event', {
-            user_name : user_name,
-            message : user_input
-          } )
-          $( 'input.message' ).val( '' ).focus()
-        } )
+        // var form = $( 'status' ).on( 'submit', function( e ) {
+        //   e.preventDefault()
+        //   let user_name = $( 'input.username' ).val()
+        //   let user_input = $( 'input.message' ).val()
+        //   socket.emit( 'my event', {
+        //     user_name : user_name,
+        //     message : user_input
+        //   } )
+        //   $( 'input.message' ).val( '' ).focus()
+        // } )
       } )
       socket.on( 'my response', function( msg ) {
         console.log( msg )
-        if( typeof msg.user_name !== 'undefined' ) {
-          $( 'h3' ).remove()
-          $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
-        }
+        onMessage(msg)
       })
     // audioContext = new (window.AudioContext || window.WebkitAudioContext)();
     // console.log("SAMPLERATE:" + audioContext.sampleRate)
@@ -97,8 +96,8 @@ function onClose(event) {
  * https://www.rev.ai/docs/streaming#section/Rev.ai-to-Client-Response
  * @param {MessageEvent} event
  */
-function onMessage(event) {
-    var data = JSON.parse(event.data);
+function onMessage(data) {
+    // var data = JSON.parse(event.data);
     switch (data.type){
         case "connected":
             statusElement.innerHTML =`Connected, job id is ${data.id}`;

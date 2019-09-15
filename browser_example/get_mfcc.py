@@ -130,7 +130,7 @@ def get_mfcc_wav(wav_file):
 
 ## called by front end
 def get_mfcc(rate, sig):
-    features = mfcc.mfcc(sig,rate)
+    features = mfcc.mfcc(sig,rate, nfft = 1024)
     features = mfcc.logfbank(sig)
     features = mfcc.lifter(features)
 
@@ -150,7 +150,7 @@ def get_mfcc(rate, sig):
     speech_booster = AudioEffectsChain().lowshelf(frequency=min_hz*(-1), gain=12.0, slope=0.5).highshelf(frequency=min_hz*(-1)*1.2, gain=-12.0, slope=0.5).limiter(gain=8.0)
     y_speech_boosted = speech_booster(sig)
 
-    features = mfcc.mfcc(y_speech_boosted, rate, 0.025, 0.01, 16, nfilt=40, nfft=512, appendEnergy = False, winfunc=np.hamming)
+    features = mfcc.mfcc(y_speech_boosted, rate, 0.025, 0.01, 16, nfilt=40, nfft=1024, appendEnergy = False, winfunc=np.hamming)
 
     features = preprocessing.scale(features) #scaling to ensure that all values are within 0 and 1
 
