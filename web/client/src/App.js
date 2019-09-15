@@ -31,9 +31,6 @@ class App extends React.Component {
           </Switch>
       </div>
     );
-    // return (
-    //   <div>HELLO WORLD!</div>
-    // );
   }
 }
 
