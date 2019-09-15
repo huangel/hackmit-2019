@@ -36,4 +36,5 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
         socketio.emit('my response', x)
     # socketio.emit('my response', json, callback=messageReceived)
 
-    
+if __name__ == '__main__':
+    app.run()
