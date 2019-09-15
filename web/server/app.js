@@ -9,7 +9,7 @@ const socketio = require('socket.io');
 // local dependencies
 // const db = require('./db');
 // const passport = require('./passport');
-// const api = require('./routes/api');
+const api = require('./api');
 
 // initialize express app
 const app = express();
@@ -53,7 +53,7 @@ app.use(session({
 //   res.redirect('/'); 
 // });
 
-// app.use('/api', api );
+app.use('/api', api );
 
 // app.use(express.static('/client/dist'))
 
@@ -65,7 +65,11 @@ app.use(express.static(publicPath));
 
 app.get('/', (req, res) => {
     // res.send('Hello World!')
-    res.sendFile('index.html', { root: "/Users/elizabethzhou/Documents/hackmit-2019/web/client/dist/" })
+    res.sendFile('index.html', { root: publicPath })
+});
+
+app.get('/start', (req, res) => {
+
 });
 
 // 404 route
