@@ -1,0 +1,19 @@
+.message-card {
+    border-radius: 50%;
+    border-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-pic {
+    border-radius: 100%;
+    border-color: black;
+}
+
+.friend-name {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.message-text {
+    font-family: 'Noto Sans KR', sans-serif;
+}

@@ -72,7 +72,7 @@ class MicrophoneStream(object):
             if chunk is None:
                 return
             data = [chunk]
-
+            print(np.fromstring(chunk, "Int16"))
             # Now consume whatever other data's still buffered.
             while True:
                 try:
