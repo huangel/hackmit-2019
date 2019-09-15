@@ -1,3 +1,5 @@
+import "../style.css";
+
 /**
  * Begins a stream with rev.ai using the AudioContext from the browser. Stream will continue until the websocket 
  * connection is closed. Follows the protocol specficied in our documentation:

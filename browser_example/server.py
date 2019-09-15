@@ -14,10 +14,16 @@ def index():
     index_file = 'index.html'
     return send_file(index_file)
 
+
 @app.route('/index.js')
 def js():
     js_file = './javascript/index.js'
     return send_file(js_file)
+
+@app.route('/style.css')
+def css():
+    css_file = './static/style.css'
+    return send_file(css_file)
 
 # def messageReceived(methods=['GET', 'POST']):
 #     print('message was received!!!')
