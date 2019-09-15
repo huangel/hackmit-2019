@@ -1,10 +1,10 @@
 import React from "react";
-import "../css/app.css";
+// import "../css/app.css";
 import Route from "react-router-dom/es/Route";
 import Switch from "react-router-dom/es/Switch";
 import Redirect from "react-router-dom/es/Redirect";
 
-import Root from "./pages/Root";
+import Root from "./components/pages/Root";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,13 +17,13 @@ class App extends React.Component {
   }
 
   render() {
-    const curPath = window.location.pathname;
-    if (this.state.fetching) {
-      return (null);
-    }
-    if (!this.state.userInfo && curPath != "/") {
-      return <Redirect to="/" />;
-    }
+    // const curPath = window.location.pathname;
+    // if (this.state.fetching) {
+    //   return (null);
+    // }
+    // if (!this.state.userInfo && curPath != "/") {
+    //   return <Redirect to="/" />;
+    // }
     return (
       <div>
           <Switch>
@@ -31,6 +31,9 @@ class App extends React.Component {
           </Switch>
       </div>
     );
+    // return (
+    //   <div>HELLO WORLD!</div>
+    // );
   }
 }
 

@@ -13,7 +13,7 @@ const socketio = require('socket.io');
 
 // initialize express app
 const app = express();
-const publicPath = path.resolve(__dirname, '..', 'socket/dist');
+const publicPath = path.join(__dirname, '../client/dist');
 
 // set POST request body parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,11 +55,18 @@ app.use(session({
 
 // app.use('/api', api );
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-});
+// app.use(express.static('/client/dist'))
+
+// app.get('/client/dist/js/{filename}', (req, res) => {
+//     res.sendFile(req.filename, { root: "/Users/elizabethzhou/Documents/hackmit-2019/web/client/dist/" })
+// });
 
 app.use(express.static(publicPath));
+
+app.get('/', (req, res) => {
+    // res.send('Hello World!')
+    res.sendFile('index.html', { root: "/Users/elizabethzhou/Documents/hackmit-2019/web/client/dist/" })
+});
 
 // 404 route
 app.use(function(req, res, next) {
