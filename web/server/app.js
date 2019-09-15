@@ -55,21 +55,11 @@ app.use(session({
 
 app.use('/api', api );
 
-// app.use(express.static('/client/dist'))
-
-// app.get('/client/dist/js/{filename}', (req, res) => {
-//     res.sendFile(req.filename, { root: "/Users/elizabethzhou/Documents/hackmit-2019/web/client/dist/" })
-// });
-
 app.use(express.static(publicPath));
 
 app.get('/', (req, res) => {
     // res.send('Hello World!')
     res.sendFile('index.html', { root: publicPath })
-});
-
-app.get('/start', (req, res) => {
-
 });
 
 // 404 route

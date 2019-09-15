@@ -27,7 +27,7 @@ router.get('/test', function(req, res) {
 
 router.get('/listen', function(req, res) {
     var spawn = require("child_process").spawn;
-    var process = spawn('python', ["../../src/get_mfcc.py"]);
+    var process = spawn('python3', ["../../src/get_mfcc.py"]);
 
     process.stdout.on('data', function (data) {
         res.send(data.toString());

@@ -28,6 +28,7 @@
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.24.1",
+    "connect-ensure-login": "^0.1.1",
     "css-loader": "^3.2.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
