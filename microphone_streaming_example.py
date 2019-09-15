@@ -57,6 +57,9 @@ class MicrophoneStream(object):
 
     def _fill_buffer(self, in_data, frame_count, time_info, status_flags):
         """Continuously collect data from the audio stream, into the buffer."""
+        # print("IN DATA:", np.fromstring(in_data, 'Int16'))
+        # print("IN DATA:", int.from_bytes(in_data))
+
         self._buff.put(in_data)
         return None, pyaudio.paContinue
 
