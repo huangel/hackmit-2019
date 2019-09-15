@@ -10,8 +10,18 @@ export default class Feed extends React.Component {
         this.socket = io('http://localhost:3000');
         
         this.state = {
-            messages: [],
+            messag ,
         }
+    }
+
+    parseResponse(response) {
+        var message = "";
+        var speaker = response.speaker ? response.speaker : "Unknown Speaker";
+        message += response.type == "final" ?  speaker + ": " : `${speaker}: `;
+        for (var i = 0; i < response.elements.length; i++){
+            message += response.type == "final" ?  response.elements[i].value : `${response.elements[i].value}`;
+        }
+        return message;
     }
 
     componentDidMount() {
@@ -24,6 +34,7 @@ export default class Feed extends React.Component {
         document.title = "Listening";
         this.getMessages();
     }
+
 
     render() {
         return (
