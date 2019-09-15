@@ -28,12 +28,14 @@ SPEAKERS = queue.Queue()
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
     def __init__(self, rate, chunk, names, filenames):
+
         self._vec_map = {}
-        for i in range(len(names)):
-            vec1 = get_mfcc(filenames[i])
-            vec2 = get_mfcc(filenames[i+1])
+        for i in range(len(names)-1):
+            vec1 = get_mfcc_wav(filenames[2*i])
+            vec2 = get_mfcc_wav(filenames[2*i+1])
             self._vec_map[names[i]] = [vec1.flatten(), vec2.flatten()]
-        kdt = vr.VoiceRecognition(_vec_map)
+
+        self._predictor = vr.VoiceRecognition(self._vec_map)
 
         self._rate = rate
         self._chunk = chunk
@@ -81,7 +83,9 @@ class MicrophoneStream(object):
             if chunk is None:
                 return
             data = [chunk]
-            current_speaker = get_name(get_mfcc(np.frombuffer(chunk, "Int16"), rate))
+
+            mfcc_vec = get_mfcc(rate, np.frombuffer(chunk, "Int16"))
+            current_speaker = self._predictor.predict(mfcc_vec.flatten())
 
             SPEAKERS.put(current_speaker)
             # Now consume whatever other data's still buffered.
@@ -96,10 +100,12 @@ class MicrophoneStream(object):
 
             yield b''.join(data)
 
-## called by front end
-def get_mfcc(wav_file):
+def get_mfcc_wav(wav_file):
     (rate, sig) = wav.read(wav_file)
-    sig = sig[10000:40000]
+    return get_mfcc(rate, sig)
+
+## called by front end
+def get_mfcc(rate, sig):
     features = mfcc.mfcc(sig,rate)
     features = mfcc.logfbank(sig)
     features = mfcc.lifter(features)
@@ -137,7 +143,10 @@ def reassign(name):
     k = vr.VoiceRecognition()
     k.reassign_name(name)
 
-with MicrophoneStream(rate, chunk) as stream:
+names = ["Dan", "Angel", "Katherine", "Julia"]
+filenames = ["a00001_dan.wav", "a00002_dan.wav", "new_angel1.wav", "new_angel2.wav", "new_kat1.wav", "new_kat1.wav", "new_julia1.wav", "new_julia2.wav"]
+
+with MicrophoneStream(rate, chunk, names, filenames) as stream:
     # Uses try method to allow users to manually close the stream
     try:
         # Starts the server connection and thread sending microphone audio
@@ -153,6 +162,19 @@ with MicrophoneStream(rate, chunk) as stream:
         # Ends the websocket connection.
         streamclient.client.send("EOS")
         pass
+
+# dic = {}
+# names = ["Dan", "Angel", "Katherine", "Julia"]
+# filenames = ["a00001_dan.wav", "a00002_dan.wav", "new_angel1.wav", "new_angel2.wav", "new_kat1.wav", "new_kat1.wav", "new_julia1.wav", "new_julia2.wav"]
+#
+# for i in range(len(names)-1):
+#     vec1 = get_mfcc_wav(filenames[2*i])
+#     vec2 = get_mfcc_wav(filenames[2*i+1])
+#     dic[names[i]] = [vec1.flatten(), vec2.flatten()]
+#
+# kd = vr.VoiceRecognition(dic)
+# current_vector = get_mfcc_wav("test_angel.wav")
+# print(kd.predict(current_vector.flatten()))
 
 # all_files = ["a00001_dan.wav", "a00002_dan.wav", "a00002_tina.wav", "a00002_tina2.wav", "a00001_sylvia.wav", "a00002_sylvia.wav", "julia1.wav", "julia2.wav"]
 # rate, sig = wav.read(all_files[0])
