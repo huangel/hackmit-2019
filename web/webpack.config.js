@@ -50,6 +50,7 @@ module.exports = {
     contentBase: './client/dist',
     hot: true,
     proxy: {
+      '/api': 'http://localhost:3000'
     }
   }
 };

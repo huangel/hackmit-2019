@@ -5,16 +5,19 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./static/style.css">
+        <link rel="stylesheet" href="./style.css">
         <!-- <link rel= "stylesheet" type= "text/css" href= "{ url_for('static',filename='style.css') }"> -->
         <title>Conversations</title>
     </head>
     <body>
         <div id="root">
-            <div class="title">Conversations</div>
-            <div class="subtitle" id="status">Start a conversation...</div>
-            <button id="streamButton" onclick="doStream()">Record</button>
-            <table id="messages"></table>
+            <div class="page-container">
+                <div class="title">Conversations</div>
+                <div class="subtitle" id="status">Start a conversation...</div>
+                <button id="streamButton" onclick="doStream()">Record</button>
+                <table id="messages"></table>
+                <div class="text">Powered by rev.ai</div>
+            </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>

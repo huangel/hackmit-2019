@@ -1,5 +1,3 @@
-import "../style.css";
-
 /**
  * Begins a stream with rev.ai using the AudioContext from the browser. Stream will continue until the websocket 
  * connection is closed. Follows the protocol specficied in our documentation:
@@ -12,7 +10,7 @@ function doStream() {
     finalsReceived = 0;
     currentCell = null;
     resetDisplay();
-    statusElement.innerHTML = "Opened";
+    statusElement.innerHTML = "Recording...";
     var socket = io.connect(site_base_url);
       socket.on( 'connect', function() {
         socket.emit( 'my event', {

@@ -31,6 +31,7 @@ router.get('/listen', function(req, res) {
 
     process.stdout.on('data', function (data) {
         res.send(data.toString());
+        console.log(data.toString);
     });
 });
 

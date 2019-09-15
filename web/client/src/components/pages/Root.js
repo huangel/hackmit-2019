@@ -11,18 +11,7 @@ export default class Root extends React.Component {
       return (
         <div class="page-container">
           <div class="title">Conversations</div>
-          {/* <div class="subtitle">Start a conversation with...</div>
-          <div class="container">
-              <div class="tile-button">
-                  <img class="tile-image" src="./media/friends.jpg" />
-                  <div class="caption">your friends</div>
-              </div>
-              <div class="tile-button">
-                  <img class="tile-image" src="./media/stranger.jpg"/>
-                  <div class="caption">someone new</div>
-              </div>
-          </div> */}
-          <div class="subtitle button">Start a conversation</div>
+          <a href="#" class="subtitle button">Start a conversation</a>
         </div>
       );
   }

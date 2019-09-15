@@ -10,7 +10,8 @@ export default class Feed extends React.Component {
         this.socket = io('http://localhost:3000');
         
         this.state = {
-            messag ,
+            status: false,
+            messages: [],
         }
     }
 
@@ -25,13 +26,13 @@ export default class Feed extends React.Component {
     }
 
     componentDidMount() {
-        this.socket.on('message', (message) => {
+        this.socket.on('my response', (message) => {
             this.setState({
                 messages: [{message}].concat(this.state.messages),
             });
         });
 
-        document.title = "Listening";
+        document.title = "Listening...";
         this.getMessages();
     }
 
@@ -51,8 +52,10 @@ export default class Feed extends React.Component {
     }
 
     getMessages = () => {
-        return fetch(`/api/listen`)
+        return fetch(`/`)
             .then(res => res.json())
     };
+
+    
 
 }
