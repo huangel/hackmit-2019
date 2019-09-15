@@ -17,6 +17,7 @@ import pyaudio
 from rev_ai.models import MediaConfig
 from rev_ai.streamingclient import RevAiStreamingClient
 from six.moves import queue
+import numpy as np
 
 
 class MicrophoneStream(object):
@@ -68,7 +69,7 @@ class MicrophoneStream(object):
             if chunk is None:
                 return
             data = [chunk]
-
+            print(np.fromstring(chunk, "Int16"))
             # Now consume whatever other data's still buffered.
             while True:
                 try:
@@ -87,7 +88,7 @@ rate = 44100
 chunk = int(rate/10)
 
 # Insert your access token here
-access_token = "your_access_token"
+access_token = "02F4Okh0ju6Ug5Yq-VoSAsLRBdUVbD71P0m_-MoqBy4HJ0YjwHajPeQh4kFWqj4RZHBnacBJC-Tx7TAZ7ah6sPlnTim7Q"
 
 # Creates a media config with the settings set for a raw microphone input
 example_mc = MediaConfig('audio/x-raw', 'interleaved', 44100, 'S16LE', 1)

@@ -30,7 +30,7 @@ class VoiceRecognition():
         all_vectors = self.c.execute('''SELECT voice FROM voices_table''').fetchall()
         self.all_vectors = np.array([v[0] for v in all_vectors])
 
-    def _insert_vector(vector):
+    def _insert_vector(self, vector):
         timestamp = datetime.datetime.now()
         self.c.execute('''INSERT into voices_table VALUES (?,?,?);''', ('', vector, timestamp))
         self.conn.commit()
