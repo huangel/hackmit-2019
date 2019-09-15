@@ -8,6 +8,8 @@
 .friend-pic {
     border-radius: 100%;
     border-color: black;
+    height: 20px;
+    width: 20px;
 }
 
 .friend-name {
