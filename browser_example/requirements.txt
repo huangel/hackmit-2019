@@ -9,7 +9,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 joblib==0.13.2
 MarkupSafe==1.1.1
-numpy==1.17.2
+numpy==1.22.0
 PyAudio==0.2.11
 pysndfx==0.3.6
 python-engineio==3.9.3
